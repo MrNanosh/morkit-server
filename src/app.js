@@ -13,7 +13,7 @@ const morganOption =
   NODE_ENV === 'production'
     ? 'tiny'
     : 'common';
-const router = require('./service-routers/router');
+// const router = require('./service-routers/router');
 
 app.use(morgan(morganOption));
 app.use(helmet());
@@ -44,6 +44,6 @@ app.use(function errorHandler(
   res.status(500).json(response);
 });
 
-app.use('/service-routers', router);
+// app.use('/service-routers', router);
 
 module.exports = app;
