@@ -22,7 +22,8 @@
     "helmet": "^3.21.2",
     "knex": "^0.20.4",
     "morgan": "^1.9.1",
-    "pg": "^7.15.0"
+    "pg": "^7.15.0",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
