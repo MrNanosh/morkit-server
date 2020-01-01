@@ -35,7 +35,8 @@ app.get(
         item_body:
           'this is an original item1, for sale, low price',
         item_owner: 7,
-        item_is: 'selling'
+        item_is: 'selling',
+        item_list: 1
       },
       {
         id: 2,
@@ -43,7 +44,8 @@ app.get(
         item_body:
           'this is an original item2, for sale, low price',
         item_owner: 6,
-        item_is: 'selling'
+        item_is: 'selling',
+        item_list: 1
       }
     ]);
   }
@@ -54,7 +56,69 @@ app.get('/api/message', (req, res) => {
 app.get(
   '/api/inventory',
   (req, res) => {
-    res.json(['things you have']);
+    res.json({
+      items: [
+        {
+          id: 1,
+          item_name: 'item1',
+          item_body:
+            'this is an original item1, for sale, low price',
+          item_owner: 1,
+          item_is: 'selling',
+          item_list: 2
+        },
+        {
+          id: 2,
+          item_name: 'item2',
+          item_body:
+            'this is an original item1, for sale, low price',
+          item_owner: 1,
+          item_is: 'selling',
+          item_list: 2
+        },
+        {
+          id: 5,
+          item_name: 'item5',
+          item_body:
+            'this is an original item1, for sale, low price',
+          item_owner: 1,
+          item_is: 'selling',
+          item_list: 3
+        },
+        {
+          id: 4,
+          item_name: 'item4',
+          item_body:
+            'this is an original item1, for sale, low price',
+          item_owner: 1,
+          item_is: 'selling',
+          item_list: 4
+        }
+      ],
+      lists: [
+        {
+          id: 1,
+          list_owner: 1,
+          list_name: 'galaxies for sale'
+        },
+        {
+          id: 2,
+          list_owner: 1,
+          list_name:
+            'lightsabers on da cheap'
+        },
+        {
+          id: 4,
+          list_owner: 1,
+          list_name: 'Sith Cloaks'
+        },
+        {
+          id: 3,
+          list_owner: 1,
+          list_name: 'swamp properties'
+        }
+      ]
+    });
   }
 );
 // app.use('/api/message', message-router)
