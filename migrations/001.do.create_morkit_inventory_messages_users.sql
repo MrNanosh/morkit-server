@@ -26,12 +26,14 @@ CREATE TABLE msg (
     DEFAULT AS IDENTITY,
     sender_id integer REFERENCES morkit_user (id) ON DELETE CASCADE NOT NULL,
     receiver_id integer REFERENCES morkit_user (id) ON DELETE CASCADE NOT NULL,
+    item_id integer REFERENCES inventory (id) ON DELETE CASCADE NOT NULL,
     send_time timestamp DEFAULT now() NOT NULL,
     content text,
     buy boolean DEFAULT FALSE NOT NULL,
     check_available boolean DEFAULT FALSE NOT NULL,
     rsp_buy item_options,
-    rsp_check_available item_options,
+    rsp_time rsp_check item_options,
+    rsp_both item_options,
     rsp_content text
 );
 
