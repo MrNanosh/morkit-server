@@ -12,7 +12,8 @@ const serializeItem = item => ({
   item_name: xss(item.item_name),
   item_body: xss(item.item_body),
   item_is: item.item_is,
-  item_list: item.item_list
+  item_list: item.item_list,
+  owner_name: xss(item.owner_name)
 });
 
 //the forsale view does not need post and delete. just get methods...

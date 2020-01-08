@@ -1,8 +1,18 @@
 const ForsaleService = {
   getAllItems(knex) {
-    return knex
-      .select('*')
-      .from('inventory'); //do a join to give not only id of item_owner but details about that owner
+    let items = knex
+      .from('inventory AS i')
+      .join(
+        'morkit_user as u',
+        'i.item_owner',
+        '=',
+        'u.id'
+      )
+      .select(
+        'i.*',
+        'u.username AS owner_name'
+      );
+    return items;
   },
   // insertItem(knex, newItem) {
   //   return knex

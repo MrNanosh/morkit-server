@@ -47,7 +47,7 @@ const ItemsService = {
       .where({ id })
       .delete();
   },
-  updateItems(knex, id, newItemFields) {
+  updateItem(knex, id, newItemFields) {
     return knex('inventory')
       .where({ id })
       .update(newItemFields);

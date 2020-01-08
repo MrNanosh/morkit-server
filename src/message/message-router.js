@@ -56,18 +56,13 @@ messagesRouter
         sender_id,
         receiver_id,
         item_id,
-        send_time,
         buy,
-        check_available,
-        rsp_buy,
-        rsp_time,
-        rsp_check,
-        rsp_both,
-        rsp_content
+        check_available
       } = req.body;
       const newMessage = {
         content,
         receiver_id,
+        sender_id,
         item_id,
         buy,
         check_available
