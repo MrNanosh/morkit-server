@@ -206,6 +206,7 @@ app.use(function errorHandler(
 ) {
   let response;
   if (NODE_ENV === 'production') {
+    console.error(error);
     response = {
       error: { message: 'server error' }
     };
