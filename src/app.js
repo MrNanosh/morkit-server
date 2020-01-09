@@ -9,10 +9,10 @@ const {
 
 const app = express();
 
-const morganOption =
-  NODE_ENV === 'production'
-    ? 'tiny'
-    : 'common';
+const morganOption = 'common';
+// NODE_ENV === 'production'
+//   ? 'tiny'
+//   : 'common';
 const messageRouter = require('./message/message-router');
 const inventoryRouter = require('./inventory/inventory-router');
 // const router = require('./user/user-router');
