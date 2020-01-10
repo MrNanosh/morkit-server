@@ -396,7 +396,7 @@ describe('Inventory Endpoints', function() {
     });
   });
 
-  describe.only(`DELETE /api/inventory/:item_id`, () => {
+  describe(`DELETE /api/inventory/:item_id`, () => {
     context(`Given no items`, () => {
       it(`responds with 404`, () => {
         const itemId = 123456;
@@ -415,23 +415,33 @@ describe('Inventory Endpoints', function() {
       'Given there are items in the database',
       () => {
         const testItems = makeItemsArray();
+        const testUsers = makeUsersArray();
+        const testLists = makeListsArray();
+
         beforeEach(
           'insert items',
           () => {
             return db
-              .into('blogful_users')
+              .into('morkit_user')
               .insert(testUsers)
               .then(() => {
                 return db
-                  .into('inventory')
-                  .insert(testItems);
+                  .into('category_list')
+                  .insert(testLists)
+                  .then(() => {
+                    return db
+                      .into('inventory')
+                      .insert(
+                        testItems
+                      );
+                  });
               });
           }
         );
 
         it('responds with 204 and removes the item', () => {
-          const idToRemove = 2;
-          const expectedItems = testItems.filter(
+          const idToRemove = 5;
+          const expectedItems = makeExpectedItems().filter(
             item =>
               item.id !== idToRemove
           );
@@ -470,32 +480,41 @@ describe('Inventory Endpoints', function() {
       'Given there are items in the database',
       () => {
         const testItems = makeItemsArray();
+        const testUsers = makeUsersArray();
+        const testLists = makeListsArray();
+
         beforeEach(
           'insert items',
           () => {
             return db
-              .into('blogful_users')
+              .into('morkit_user')
               .insert(testUsers)
               .then(() => {
                 return db
-                  .into('inventory')
-                  .insert(testItems);
+                  .into('category_list')
+                  .insert(testLists)
+                  .then(() => {
+                    return db
+                      .into('inventory')
+                      .insert(
+                        testItems
+                      );
+                  });
               });
           }
         );
 
         it('responds with 204 and updates the item', () => {
-          const idToUpdate = 2;
+          const idToUpdate = 1003;
           const updateItem = {
-            title: 'updated item title',
-            style: 'Interview',
-            content:
+            item_name:
+              'updated item name',
+            item_is: 'buying',
+            item_body:
               'updated item content'
           };
           const expectedItem = {
-            ...testItems[
-              idToUpdate - 1
-            ],
+            ...makeExpectedItems()[0],
             ...updateItem
           };
           return supertest(app)
@@ -514,7 +533,7 @@ describe('Inventory Endpoints', function() {
         });
 
         it(`responds with 400 when no required fields supplied`, () => {
-          const idToUpdate = 2;
+          const idToUpdate = 1004;
           return supertest(app)
             .patch(
               `/api/inventory/${idToUpdate}`
@@ -524,20 +543,19 @@ describe('Inventory Endpoints', function() {
             })
             .expect(400, {
               error: {
-                message: `Request body must contain either 'title', 'style' or 'content'`
+                message: `Request body must contain either 'item_name', 'item_body','item_list' or 'item_is'`
               }
             });
         });
 
         it(`responds with 204 when updating only a subset of fields`, () => {
-          const idToUpdate = 2;
+          const idToUpdate = 1003;
           const updateItem = {
-            title: 'updated item title'
+            item_name:
+              'updated item title'
           };
           const expectedItem = {
-            ...testItems[
-              idToUpdate - 1
-            ],
+            ...makeExpectedItems()[0],
             ...updateItem
           };
 
