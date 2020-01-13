@@ -35,7 +35,6 @@ const ListService = {
       )
       .select(
         'li.*',
-        'u.id as owner_id',
         'u.username AS owner_name'
       )
       .where({ list_owner: auth_user })

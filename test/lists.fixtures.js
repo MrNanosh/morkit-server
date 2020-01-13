@@ -55,6 +55,12 @@ function makeListsArray() {
         'a better name for a list'
     },
     {
+      id: 1048,
+      list_owner: 4,
+      list_name:
+        'a list from another owner'
+    },
+    {
       id: 8,
       list_owner: 2,
       list_name: 'this is a list'

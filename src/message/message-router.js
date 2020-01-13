@@ -171,7 +171,7 @@ messagesRouter
         return res.status(400).json({
           error: {
             message:
-              "Request body must contain either 'title', 'style' or 'content'"
+              "Request body must contain either 'rsp_buy', 'rsp_check', 'rsp_both' or 'rsp_content'"
           }
         });
       }

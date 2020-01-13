@@ -35,7 +35,10 @@ const MessagesService = {
       .into('msg')
       .returning('*')
       .then(rows => {
-        return rows[0];
+        return this.getById(
+          knex,
+          rows[0].id
+        );
       });
   },
   getById(knex, id) {

@@ -9,8 +9,7 @@ const jsonParser = express.json();
 const serializeList = list => ({
   id: list.id,
   list_owner: list.list_owner,
-  list_name: list.list_name,
-  owner_id: list.owner_id,
+  list_name: xss(list.list_name),
   owner_name: list.owner_name
 });
 
