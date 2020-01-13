@@ -298,7 +298,6 @@ describe('Inventory Endpoints', function() {
         sender_id: 2, //should automatically become 2 but sender_id is required for a post
         send_time: null // should reset anyways
       };
-      console.log(newMessage);
 
       return supertest(app)
         .post('/api/message')
@@ -508,7 +507,7 @@ describe('Inventory Endpoints', function() {
     );
   });
 
-  describe.only(`PATCH /api/message/:message_id`, () => {
+  describe(`PATCH /api/message/:message_id`, () => {
     context(`Given no messages`, () => {
       it(`responds with 404`, () => {
         const msgId = 123456;
