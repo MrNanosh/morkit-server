@@ -159,8 +159,7 @@ messagesRouter
       const messageToUpdate = {
         rsp_buy,
         rsp_check,
-        rsp_both,
-        rsp_content
+        rsp_both
       };
 
       const numberOfValues = Object.values(
@@ -171,12 +170,13 @@ messagesRouter
         return res.status(400).json({
           error: {
             message:
-              "Request body must contain either 'rsp_buy', 'rsp_check', 'rsp_both' or 'rsp_content'"
+              "Request body must contain either 'rsp_buy', 'rsp_check', or 'rsp_both' "
           }
         });
       }
 
       messageToUpdate.rsp_time = new Date();
+      messageToUpdate.rsp_content = rsp_content;
 
       MessagesService.updateMessage(
         req.app.get('db'),

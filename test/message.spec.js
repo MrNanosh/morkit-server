@@ -609,7 +609,7 @@ describe('Inventory Endpoints', function() {
             .expect(400, {
               error: {
                 message:
-                  "Request body must contain either 'rsp_buy', 'rsp_check', 'rsp_both' or 'rsp_content'"
+                  "Request body must contain either 'rsp_buy', 'rsp_check', or 'rsp_both' "
               }
             });
         });
@@ -618,8 +618,7 @@ describe('Inventory Endpoints', function() {
           this.retries(3);
           const idToUpdate = 1003;
           const updateMessage = {
-            rsp_content:
-              'updated content'
+            rsp_both: 'yes'
           };
           const expected_rsp_time = new Date().toLocaleString();
 
