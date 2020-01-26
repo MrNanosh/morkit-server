@@ -154,9 +154,15 @@ inventoryRouter
         item_owner
       };
 
-      const numberOfValues = Object.values(
+      let numberOfValues = Object.values(
         itemToUpdate
       ).filter(Boolean).length;
+      if (
+        item_name === '' ||
+        item_body === ''
+      ) {
+        numberOfValues++;
+      }
       if (numberOfValues === 0) {
         return res.status(400).json({
           error: {
