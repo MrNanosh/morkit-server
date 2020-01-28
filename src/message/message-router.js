@@ -162,6 +162,7 @@ messagesRouter
         rsp_both
       };
 
+      console.log(messageToUpdate);
       const numberOfValues = Object.values(
         messageToUpdate
       ).filter(Boolean).length;
